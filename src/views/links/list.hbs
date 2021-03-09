@@ -1,0 +1,29 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each cambios}}
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase">
+                            {{titulo}}
+                        </h3>
+                        <p class="m-2">{{descripcion}}</p>
+                        <p class="m-2">{{timeago creado}}</p>
+
+                        <a href="/links/delete/{{id}}" class="btn btn-danger">Eliminar</a>
+                        <a href="/links/edit/{{id}}" class="btn btn-secondary">Editar</a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No existen aun ninguna revision</p>
+                <a href="/links/add">Crea una</a>
+            </div>
+        </div>
+        {{/each}}
+        
+        
+    </div>
+</div>
