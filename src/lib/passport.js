@@ -35,19 +35,20 @@ passport.use('local.signup', new Strategy({
         fullname, 
         username, 
         password
+
     };
     newUser.password = await helpers.encryptPassword(password);
     const result = await pool.query('INSERT INTO usuario SET ?', [newUser]);
-    newUser.id = result.insertId;
+    newUser.ID = result.insertId;
     return done(null, newUser);
 }));
 
-passport.serializeUser((user, done) =>{
+passport.serializeUser((user, done) => {
     done(null, user.ID);
 });
 
-passport.deserializeUser(async (ID, done) =>{
-    const rows = await pool.query('SELECT * FROM usuario WHERE ID = ?', [ID]);
+passport.deserializeUser(async (id, done) => {
+    const rows = await pool.query('SELECT * FROM usuario WHERE ID = ?', id);
     done(null, rows[0]);
 });
 
