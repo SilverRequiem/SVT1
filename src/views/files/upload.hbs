@@ -1,0 +1,75 @@
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3>Sube Tu Documento</h3>
+        </div>
+        <div class="card-body">
+          <input class="uploader" type="file" name="image">
+        </div>
+        <input type="submit" class="btn btn-success" value="Guardar" id="save">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+<script>
+  let file = null;
+  const imagen = document.querySelector('.uploader');
+  imagen.addEventListener('change', (e) => {
+    file = e.target.files[0];
+  })
+
+  document.getElementById("save").addEventListener('click', (e) => {
+
+    if (file == null) {
+      window.alert('Favor de seleccionar un archivo');
+
+
+    } else {
+      const arr_separado = file.name.split(".");
+      const ext = arr_separado[arr_separado.length - 1]
+      fetch('/uploads/' + ext, {
+        method: 'GET',
+
+      })
+        .then(res => {
+          console.log(res)
+          console.log(file.name);
+
+          return res.json();
+        })
+        .then(upload => {
+          const { url, fields } = upload;
+          const formData = new FormData();
+
+          Object.entries({ ...fields, file }).forEach(([key, value]) => {
+            formData.append(key, value);
+            console.log(key, value);
+          });
+
+          fetch(url, {
+            method: 'POST',
+            body: formData,
+          })
+
+
+            .then(upload => {
+              if (upload.ok) {
+                window.alert("Subido correctamente");
+                console.log('Uploaded successfully!');
+                console.log(upload);
+              } else {
+                console.error('Upload failed.');
+              }
+            })
+
+        });
+    }
+  });
+</script>
