@@ -2,6 +2,7 @@ body{
     background: #f5f6f5;
     font-family: 'Shippori Mincho', sans-serif;
     overflow:hidden;
+
     
 
 }
@@ -21,7 +22,7 @@ body{
     background: url('/img/background.jpeg');
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover;
+
 }
 
 .masterhead h1{
@@ -37,3 +38,9 @@ body{
     }
 }
 
+.oscurecer {
+    
+        background: linear-gradient(to right, rgba(57, 106, 252, 0.5), rgba(41, 72, 255, 0.2)), url('/img/background4.jfif'));
+  
+  
+  }
