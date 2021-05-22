@@ -16,8 +16,8 @@ router.get('/upload', isLoggedIn, (req, res) => {
 router.get('/uploads/:ext', isLoggedIn,  async(req,res) => {
   console.log(req.params.ext);
   aws.config.update({
-    accessKeyId: 'AKIAZZHZQNN7FVKUH2MY',
-    secretAccessKey: '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',
+    accessKeyId: '',
+    secretAccessKey: '',
     region: 'us-east-2',
     signatureVersion: 'v4',
 
